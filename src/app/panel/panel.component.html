@@ -1,0 +1,12 @@
+<p>
+  PANEL
+</p>
+
+<div>
+  <app-score></app-score>
+
+  <div class="buttons">
+    <app-button *ngFor="let color of colors" [color]="color" (click)="getColor(color)"></app-button>
+  </div>
+
+</div>

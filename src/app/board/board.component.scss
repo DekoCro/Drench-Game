@@ -1,0 +1,13 @@
+section {
+    display: flex;
+    flex-wrap: wrap;
+    width: 378px;
+    div {
+        width: 27px;
+        height: 27px;
+        text-align: center;
+    }
+    .silver {
+        background-color: silver;
+    }
+}
