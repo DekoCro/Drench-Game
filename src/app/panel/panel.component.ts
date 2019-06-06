@@ -1,4 +1,4 @@
-import { RandomService } from './../random.service';
+import { COLORS } from './../colors';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanelComponent implements OnInit {
 
-  constructor(private service: RandomService) { }
+  constructor() { }
 
-  colors: string[] = this.service.allColors;
+  colors: string[] = COLORS;
   clickedColor;
 
   getColor(color: string) {

@@ -1,6 +1,5 @@
-<section>
-  <div *ngFor="let randomColor of randomColors" [ngStyle]="{background: randomColor }">a</div>
+<section #field (click)="play()">
+  <div *ngFor="let color of randomColors" [ngStyle]="{background: color }" #divs></div>
 </section>
 
-
-<!--<button [ngStyle]="{background: 'red'}">Button</button> -->
+<p *ngFor="let k of bla"> {{k}} </p>

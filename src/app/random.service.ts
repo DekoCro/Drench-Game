@@ -6,11 +6,9 @@ import { COLORS } from './colors';
 })
 export class RandomService {
 
-  unit: string = '27px';
   x: number = 14;
   y: number = 14;
   numOfFields: number = this.x * this.y;
-  allColors = COLORS;
   randomNumbers: number[] = [];
   randomColors: string[] = [];
 
@@ -22,6 +20,8 @@ export class RandomService {
   }
 
   generateBoard() {
+    this.generateNumbers();
+    
     this.randomNumbers.forEach(i => {
       switch(i) {
         case 1:

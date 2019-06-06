@@ -1,5 +1,4 @@
-import { COLORS } from './../colors';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChildren, QueryList } from '@angular/core';
 import { RandomService } from '../random.service';
 
 @Component({
@@ -9,15 +8,30 @@ import { RandomService } from '../random.service';
 })
 export class BoardComponent implements OnInit {
 
-  constructor(private service: RandomService) {}
+  @Input() field: string;
+  @ViewChildren('divs') divs: QueryList<any>;
 
+  constructor(private service: RandomService) {}
+  
   randomColors: string[] = this.service.randomColors;
+  mainField;
+
+  getDrenchField() {
+    this.mainField = this.divs.first.nativeElement;
+    console.log(this.mainField);
+  }
+
+  play(){
+    this.mainField.innerHTML = "1";
+  }
 
   ngOnInit() {
-    this.service.generateNumbers();
     this.service.generateBoard();
-    
     console.log(this.randomColors);
     console.log(this.service.randomNumbers);
+  }
+
+  ngAfterViewInit(){
+    this.getDrenchField();
   }
 }
