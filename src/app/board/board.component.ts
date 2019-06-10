@@ -14,40 +14,46 @@ export class BoardComponent implements OnInit {
   constructor(private service: RandomService) {}
   
   randomColors: string[] = this.service.randomColors;
+  positions = this.service.positions;
   mainField;
-  positions = [];
+  arr: any[] = [];
+  arr2: any[] = [];
 
   getDrenchField() {
     this.mainField = this.divs.first.nativeElement;
     console.log(this.mainField.style.backgroundColor);
     //console.log(this.divs._results[1].nativeElement.style.backgroundPositionX)
-    console.log();
+
+    let mainEl = [1,1];
+    let elementX = this.mainField.style.backgroundPositionX;
+    let elementY = this.mainField.style.backgroundPositionY;
+    let br = 1 + Number(elementX.split('').map(n => parseInt(n)).filter(n => n < 15).join(''));
+    let gr = Number(elementY.split('').map(n => parseInt(n)).filter(n => n < 15).join(''));
+    if((mainEl[0] + 1 === br && mainEl[1] === gr) || (mainEl[0] === br && mainEl[1] + 1 === gr)) {
+      console.log('aaaa')
+      
+    }
+    this.arr.push(this.mainField);
   }
 
-  generatePositions(){
-    let x: number[] = [];
-    for(let num = 1; num <= 14; num++){
-      x.push(num);
-    }
+  play() {
+    for(let i = 0; i < this.arr.length; i++) {
+      let xpos = this.arr[i].style.backgroundPositionX;
+      let aaa = this.service.parsePosition(xpos);
 
-    for(let i = 0; i < x.length; i++) {
-      this.positions.push([1, x[i]]);
-      for(let j = 1; j < x.length; j++) {
-        this.positions.push([x[j], x[i]])
+      console.log(this.service.parsePosition(xpos));
+      if(xpos.length < 4 && this.service.clickedColor.toLowerCase() === this.mainField.style.backgroundColor.toLowerCase()) {
+        console.log('it will work')
+      } else {
+        console.log('it wont')
       }
     }
-  }
-
-  play(){
-    this.mainField.innerHTML = "1";
+    console.log(this.arr);
+    console.log(this.service.clickedColor)
   }
 
   ngOnInit() {
     this.service.generateBoard();
-    this.generatePositions();
-    console.log(this.positions);
-    console.log(this.randomColors);
-    console.log(this.service.randomNumbers);
   }
 
   ngAfterViewInit(){

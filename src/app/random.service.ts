@@ -11,6 +11,8 @@ export class RandomService {
   numOfFields: number = this.x * this.y;
   randomNumbers: number[] = [];
   randomColors: string[] = [];
+  clickedColor: string;
+  positions: number[][] = [];
 
   generateNumbers() {
     for(let i = 0; i < this.numOfFields; i++) {
@@ -19,7 +21,24 @@ export class RandomService {
     }
   }
 
+  generatePositions(){
+    let x: number[] = Array.from({length: 14}, (i, j) => j + 1);
+
+    for(let i = 0; i < x.length; i++) {
+      this.positions.push([1, x[i]]);
+      for(let j = 1; j < x.length; j++) {
+        this.positions.push([x[j], x[i]])
+      }
+    }
+  }
+
+  parsePosition(position) {
+    position.split('').map(n => parseInt(n)).filter(n => n < 15).join('');
+    return Number(position);
+  }
+
   generateBoard() {
+    this.generatePositions();
     this.generateNumbers();
     
     this.randomNumbers.forEach(i => {

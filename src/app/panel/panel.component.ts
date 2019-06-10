@@ -1,5 +1,6 @@
 import { COLORS } from './../colors';
 import { Component, OnInit } from '@angular/core';
+import { RandomService } from '../random.service';
 
 @Component({
   selector: 'app-panel',
@@ -8,14 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanelComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: RandomService) { }
 
   colors: string[] = COLORS;
-  clickedColor;
-
+  clickedColor: string;
+  
   getColor(color: string) {
     this.clickedColor = color;
     console.log(this.clickedColor);
+    this.service.clickedColor = color;
   }
 
   ngOnInit() {
