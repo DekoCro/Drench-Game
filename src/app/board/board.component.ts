@@ -26,8 +26,6 @@ export class BoardComponent implements OnInit {
       let drenchX: number = this.service.parsePosition(this.drenchFields[i].style.backgroundPositionX);
       let drenchY: number = this.service.parsePosition(this.drenchFields[i].style.backgroundPositionY);
 
-      console.log(drenchX);
-      console.log(drenchY);
       console.log(this.mixedFields.length - this.drenchFields.length);
 
       if(this.service.clickedColor !== undefined) {
@@ -36,25 +34,19 @@ export class BoardComponent implements OnInit {
           let mixedX: number = this.service.parsePosition(this.mixedFields[i].style.backgroundPositionX);
           let mixedY: number = this.service.parsePosition(this.mixedFields[i].style.backgroundPositionY);
 
-          // if(drenchX === mixedX && drenchY === mixedY && this.service.clickedColor === this.mixedFields[i].style.backgroundColor) {
-          //   console.log('works')
-          // } else {
-          //   console.log(this.mixedFields[i].style.backgroundColor)
-          //   // console.log('bok')
-          // }
-          //console.log(this.mixedFields[i].style.backgroundColor === "yellow")
           if((drenchX + 1 === mixedX && drenchY === mixedY && this.mixedFields[i].style.backgroundColor === this.service.clickedColor) || (drenchX === mixedX && drenchY + 1 === mixedY && this.mixedFields[i].style.backgroundColor === this.service.clickedColor)) {
             console.log(this.mixedFields[i]);
-            // this.mixedFields = this.service.arrayRemove(this.mixedFields, this.mixedFields[i]);
-            // this.drenchFields.push(this.mixedFields[i]);
+            this.drenchFields.push(this.mixedFields[i]);
+            for(let j = 0; j < this.drenchFields.length; j++) {
+              this.drenchFields[j].style.backgroundColor = this.service.clickedColor;
+            }
+            let index = this.mixedFields.indexOf(this.mixedFields[i])
+            if (index > - 1) {
+              this.mixedFields.splice(index, 1);
+            }
           }
-          // if(drenchX + 1 === this.service.parsePosition(this.mixedFields[i].style.backgroundPositionX) && drenchY === this.service.parsePosition(this.mixedFields[i].style.backgroundPositionY)) {
-          //   console.log(this.mixedFields[i]);
-          // }
-          //console.log(drenchX + 1 === mixedX);
         }
       }
-      
     }
     console.log(this.drenchFields);
     console.log(this.mixedFields);
@@ -62,6 +54,7 @@ export class BoardComponent implements OnInit {
 
   ngOnInit() {
     this.service.generateBoard();
+    this.play();
   }
 
   ngAfterViewInit(){
