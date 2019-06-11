@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { RandomService } from '../random.service';
 
 @Component({
@@ -8,48 +8,56 @@ import { RandomService } from '../random.service';
 })
 export class BoardComponent implements OnInit {
 
-  @Input() field: string;
   @ViewChildren('divs') divs: QueryList<any>;
 
   constructor(private service: RandomService) {}
   
   randomColors: string[] = this.service.randomColors;
   positions = this.service.positions;
+
+  randomFields = this.divs;
   mainField;
-  arr: any[] = [];
-  arr2: any[] = [];
-
-  getDrenchField() {
-    this.mainField = this.divs.first.nativeElement;
-    console.log(this.mainField.style.backgroundColor);
-    //console.log(this.divs._results[1].nativeElement.style.backgroundPositionX)
-
-    let mainEl = [1,1];
-    let elementX = this.mainField.style.backgroundPositionX;
-    let elementY = this.mainField.style.backgroundPositionY;
-    let br = 1 + Number(elementX.split('').map(n => parseInt(n)).filter(n => n < 15).join(''));
-    let gr = Number(elementY.split('').map(n => parseInt(n)).filter(n => n < 15).join(''));
-    if((mainEl[0] + 1 === br && mainEl[1] === gr) || (mainEl[0] === br && mainEl[1] + 1 === gr)) {
-      console.log('aaaa')
-      
-    }
-    this.arr.push(this.mainField);
-  }
+  drenchFields: any[] = [];
+  mixedFields: any[] = [];
 
   play() {
-    for(let i = 0; i < this.arr.length; i++) {
-      let xpos = this.arr[i].style.backgroundPositionX;
-      let aaa = this.service.parsePosition(xpos);
+    for(let i = 0; i < this.drenchFields.length; i++) {
 
-      console.log(this.service.parsePosition(xpos));
-      if(xpos.length < 4 && this.service.clickedColor.toLowerCase() === this.mainField.style.backgroundColor.toLowerCase()) {
-        console.log('it will work')
-      } else {
-        console.log('it wont')
+      let drenchX: number = this.service.parsePosition(this.drenchFields[i].style.backgroundPositionX);
+      let drenchY: number = this.service.parsePosition(this.drenchFields[i].style.backgroundPositionY);
+
+      console.log(drenchX);
+      console.log(drenchY);
+      console.log(this.mixedFields.length - this.drenchFields.length);
+
+      if(this.service.clickedColor !== undefined) {
+
+        for(let i = 0; i <= (this.mixedFields.length - this.drenchFields.length); i++) {
+          let mixedX: number = this.service.parsePosition(this.mixedFields[i].style.backgroundPositionX);
+          let mixedY: number = this.service.parsePosition(this.mixedFields[i].style.backgroundPositionY);
+
+          // if(drenchX === mixedX && drenchY === mixedY && this.service.clickedColor === this.mixedFields[i].style.backgroundColor) {
+          //   console.log('works')
+          // } else {
+          //   console.log(this.mixedFields[i].style.backgroundColor)
+          //   // console.log('bok')
+          // }
+          //console.log(this.mixedFields[i].style.backgroundColor === "yellow")
+          if((drenchX + 1 === mixedX && drenchY === mixedY && this.mixedFields[i].style.backgroundColor === this.service.clickedColor) || (drenchX === mixedX && drenchY + 1 === mixedY && this.mixedFields[i].style.backgroundColor === this.service.clickedColor)) {
+            console.log(this.mixedFields[i]);
+            // this.mixedFields = this.service.arrayRemove(this.mixedFields, this.mixedFields[i]);
+            // this.drenchFields.push(this.mixedFields[i]);
+          }
+          // if(drenchX + 1 === this.service.parsePosition(this.mixedFields[i].style.backgroundPositionX) && drenchY === this.service.parsePosition(this.mixedFields[i].style.backgroundPositionY)) {
+          //   console.log(this.mixedFields[i]);
+          // }
+          //console.log(drenchX + 1 === mixedX);
+        }
       }
+      
     }
-    console.log(this.arr);
-    console.log(this.service.clickedColor)
+    console.log(this.drenchFields);
+    console.log(this.mixedFields);
   }
 
   ngOnInit() {
@@ -57,6 +65,11 @@ export class BoardComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    this.getDrenchField();
+    // Selecting top left field as my main field and storing it into array
+    this.mainField = this.divs.first.nativeElement;
+    this.drenchFields.push(this.mainField);
+
+    this.divs.forEach(div => this.mixedFields.push(div.nativeElement));
+    this.mixedFields.shift();
   }
 }

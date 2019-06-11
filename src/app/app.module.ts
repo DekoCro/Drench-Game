@@ -21,7 +21,7 @@ import { PanelComponent } from './panel/panel.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [ButtonComponent],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,8 +16,7 @@ export class PanelComponent implements OnInit {
   
   getColor(color: string) {
     this.clickedColor = color;
-    console.log(this.clickedColor);
-    this.service.clickedColor = color;
+    this.service.clickedColor = color.toLowerCase();
   }
 
   ngOnInit() {

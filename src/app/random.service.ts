@@ -6,8 +6,8 @@ import { COLORS } from './colors';
 })
 export class RandomService {
 
-  x: number = 14;
-  y: number = 14;
+  x: number = 14; //TODO: add input fields which will allow user to choose width of board
+  y: number = 14; //TODO: add input fields which will allow user to choose height of board
   numOfFields: number = this.x * this.y;
   randomNumbers: number[] = [];
   randomColors: string[] = [];
@@ -33,8 +33,7 @@ export class RandomService {
   }
 
   parsePosition(position) {
-    position.split('').map(n => parseInt(n)).filter(n => n < 15).join('');
-    return Number(position);
+    return Number(position.split('').map(n => parseInt(n)).filter(n => n < 15).join(''));
   }
 
   generateBoard() {
