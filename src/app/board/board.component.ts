@@ -39,22 +39,27 @@ export class BoardComponent implements OnInit {
           let condition2 = drenchX  === mixedX && drenchY + 1 === mixedY && this.mixedFields[i].style.backgroundColor === this.service.clickedColor;
           let condition3 = drenchX - 1 === mixedX && drenchY === mixedY && this.mixedFields[i].style.backgroundColor === this.service.clickedColor;
           let condition4 = drenchX === mixedX && drenchY - 1 === mixedY && this.mixedFields[i].style.backgroundColor === this.service.clickedColor;
+          let conditionalArray: boolean[] = [condition1, condition2, condition3, condition4];
+  
+          for(let c in conditionalArray){
+            if(conditionalArray[c]) {
 
-          if((condition1 && condition2 && condition3 && condition4) || (condition1 && condition2 && condition3) || (condition1 && condition2 && condition4) || (condition1 && condition3 && condition4) || (condition2 && condition3 && condition4) || (condition1 && condition2) || (condition1 && condition3) || (condition1 && condition4) || (condition2 && condition3) || (condition2 && condition4) || (condition3 && condition4) || condition1 || condition2 || condition3 || condition4) {
-          this.drenchFields.push(this.mixedFields[i]);
+              this.drenchFields.push(this.mixedFields[i]);
 
-            // This loop changes color of drenched fields to clicked color.
-            for(let j = 0; j < this.drenchFields.length; j++) {
-              this.drenchFields[j].style.backgroundColor = this.service.clickedColor;
-            }
-            // Using indexOf we detect the element that we drenched and then we splice it from array
-            let index = this.mixedFields.indexOf(this.mixedFields[i])
-            if (index > - 1) {
-              this.mixedFields.splice(index, 1);
-            }
-            if(this.mixedFields.length - this.drenchFields.length === -196) {
-              for(let o = 0; o < this.drenchFields.length; o++) {
-                this.drenchFields[o].style.backgroundColor = "black";
+              // This loop changes color of drenched fields to clicked color.
+              for(let j = 0; j < this.drenchFields.length; j++) {
+                this.drenchFields[j].style.backgroundColor = this.service.clickedColor;
+              }
+              // Using indexOf we detect the element that we drenched and then we splice it from array
+              let index = this.mixedFields.indexOf(this.mixedFields[i])
+              if (index > - 1) {
+                this.mixedFields.splice(index, 1);
+              }
+              // If all the fields are drenched, game completed
+              if(this.mixedFields === []) {
+                for(let o = 0; o < this.drenchFields.length; o++) {
+                  this.drenchFields[o].style.backgroundColor = "black";
+                }
               }
             }
           }
