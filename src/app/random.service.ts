@@ -13,6 +13,7 @@ export class RandomService {
   randomColors: string[] = [];
   clickedColor: string;
   positions: number[][] = [];
+  moves: number = 30;
 
   generateNumbers() {
     for(let i = 0; i < this.numOfFields; i++) {

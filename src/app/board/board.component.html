@@ -1,4 +1,4 @@
-<section (click)="play(service.clickedColor)">
+<section>
   <div 
     *ngFor="let color of randomColors; index as i"
     [ngStyle]="{background: color, backgroundPositionX: positions[i][0] + 'px' , backgroundPositionY: positions[i][1] + 'px' }" 
@@ -6,4 +6,4 @@
   </div>
 </section>
 
-<button class="colorBox">aaadasdsa</button>
+<app-panel  [play]="play(this.service.clickedColor)"></app-panel>

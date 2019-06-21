@@ -2,12 +2,17 @@ section {
     display: flex;
     flex-wrap: wrap;
     width: 378px;
+    margin: 2em;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 7.5px 7.5px 5px 0px rgba(0,0,0,0.5);
     div {
         width: 27px;
         height: 27px;
         text-align: center;
     }
-    .silver {
-        background-color: silver;
-    }
+}
+
+app-panel {
+    margin: 2em;
 }

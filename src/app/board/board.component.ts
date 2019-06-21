@@ -1,4 +1,3 @@
-import { COLORS } from './../colors';
 import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { RandomService } from '../random.service';
 
@@ -17,18 +16,15 @@ export class BoardComponent implements OnInit {
   positions = this.service.positions;
 
   randomFields = this.divs;
-  mainField;
+  mainField: any;
   drenchFields: any[] = [];
   mixedFields: any[] = [];
-  arr: string[] = [];
 
   play(color) {
     for(let i = 0; i < this.drenchFields.length; i++) {
 
       let drenchX: number = this.service.parsePosition(this.drenchFields[i].style.backgroundPositionX);
       let drenchY: number = this.service.parsePosition(this.drenchFields[i].style.backgroundPositionY);
-
-      console.log(this.mixedFields.length - this.drenchFields.length);
 
       if(color !== undefined) {
 
@@ -64,7 +60,7 @@ export class BoardComponent implements OnInit {
                     let flash = this.randomColors[n]
                     n = n + 1 % this.randomColors.length;
                     this.drenchFields.map(field => field.style.backgroundColor = flash)
-                  }, 200);
+                  }, 250);
                 }
               }
             }
@@ -89,6 +85,5 @@ export class BoardComponent implements OnInit {
     for(let i = 0; i < this.drenchFields.length; i++) {
       this.play(this.drenchFields[i].style.backgroundColor)
     }
-    console.log(this.drenchFields);
   }
 }
