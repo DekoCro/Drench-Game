@@ -1,0 +1,4 @@
+<div class="iconBox">
+  <i class="far fa-times-circle" (click)="getIcon(icon)"></i>
+  <i *ngFor="let icon of icons;" class="fas fa-{{icon}}" (click)="getIcon(icon)"></i>
+</div>

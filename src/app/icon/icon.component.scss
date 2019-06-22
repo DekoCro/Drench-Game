@@ -1,0 +1,16 @@
+.fas, .far  {
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+}
+.fa-times-circle {
+    color: red;
+}
+.iconBox {
+    display: flex;
+    flex-wrap: wrap;
+    .fas:hover {
+        opacity: 0.5;
+        color: green;
+    }
+}

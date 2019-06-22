@@ -13,7 +13,9 @@ export class RandomService {
   randomColors: string[] = [];
   clickedColor: string;
   positions: number[][] = [];
+  fields: HTMLElement[];
   moves: number = 30;
+  icon: string;
 
   generateNumbers() {
     for(let i = 0; i < this.numOfFields; i++) {
@@ -23,7 +25,7 @@ export class RandomService {
   }
 
   generatePositions(){
-    let x: number[] = Array.from({length: 14}, (i, j) => j + 1);
+    let x: number[] = Array.from({length: this.x}, (i, j) => j + 1);
 
     for(let i = 0; i < x.length; i++) {
       this.positions.push([1, x[i]]);

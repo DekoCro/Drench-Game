@@ -14,13 +14,22 @@ export class PanelComponent implements OnInit {
   constructor(private service: RandomService) { }
 
   colors: string[] = COLORS;
-  clickedColor: string;
+
+  restartGame() {
+    location.reload();
+  }
   
   getColor(color: string) {
-    this.clickedColor = color;
-    this.service.clickedColor = color.toLowerCase();
-    if(this.service.moves < 1) {
-      alert('Game over motherfucker!')
+    // Getting clicked color and providing it to service
+    this.service.clickedColor = color;
+
+    // Statment that checks if you won or lost so it can display the right content
+    if(this.service.moves <= 1) {
+      (<HTMLElement>document.querySelector('.sideComponents')).style.display = "none";
+      (<HTMLElement>document.querySelector('.loss')).style.display = "block";
+    } else if (this.service.fields.length <= 1) {
+      (<HTMLElement>document.querySelector('.done')).style.display = "block";
+      (<HTMLElement>document.querySelector('.mobileAdjustment')).style.display = "none";
     } else {
       this.service.moves--;
       this.play

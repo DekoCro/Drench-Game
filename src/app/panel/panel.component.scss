@@ -1,12 +1,47 @@
 .buttons {
-    width: 13em;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 app-score {
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    padding-left: .25em;
+}
+app-icon {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 1em;
+}
+.sideComponents {
+    height: 378px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.loss, .done {
+    display: none;
+}
+.reload {
+    width: 7em;
     font-size: 2em;
+    background-color: OrangeRed;
+    color: white;
+    border-radius: 15%;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.75;
+    }
+}
+.win {
+    background-color: limegreen;
+}
+.mobileAdjustment {
+    height: 225px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @media all and(max-width: 480px) {
+        flex-direction: column-reverse;
+    }
 }

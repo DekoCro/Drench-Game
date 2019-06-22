@@ -7,6 +7,7 @@ import { BoardComponent } from './board/board.component';
 import { ButtonComponent } from './button/button.component';
 import { ScoreComponent } from './score/score.component';
 import { PanelComponent } from './panel/panel.component';
+import { IconComponent } from './icon/icon.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PanelComponent } from './panel/panel.component';
     BoardComponent,
     ButtonComponent,
     ScoreComponent,
-    PanelComponent
+    PanelComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,

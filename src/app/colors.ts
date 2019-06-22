@@ -1,8 +1,8 @@
 export const COLORS: string[] = [
-    "DeepPink",
-    "DeepSkyBlue",
-    "LimeGreen",
-    "BlueViolet",
-    "Tomato",
-    "Yellow"
+    "deeppink",
+    "deepskyblue",
+    "limegreen",
+    "blueviolet",
+    "tomato",
+    "yellow"
 ]

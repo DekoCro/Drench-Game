@@ -8,5 +8,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Swanky and Moo Moo', cursive;
+    font-family: "Slabo 27px", serif;
+    @media all and(max-width: 480px) {
+        background: white;
+    }
 }

@@ -1,4 +1,4 @@
-<section>
+<section [ngStyle]="{width: this.service.x * 27 + 'px', height: this.service.y * 27 + 'px'}">
   <div 
     *ngFor="let color of randomColors; index as i"
     [ngStyle]="{background: color, backgroundPositionX: positions[i][0] + 'px' , backgroundPositionY: positions[i][1] + 'px' }" 

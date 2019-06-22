@@ -1,10 +1,25 @@
-<div>
-  <app-score></app-score>
+<div class="sideComponents">
 
-  <div class="buttons">
-    <app-button *ngFor="let color of colors" [color]="color" (click)="getColor(color)"></app-button>
+    <!-- Following div will be displayed in the case of losing the game -->
+    <div class="loss">
+        <h2>Game Over!</h2>
+        <button class="reload" (click)="restartGame()">Try again</button>
+    </div>
+
+    <!-- Following div will be displayed in the case of winning the game -->
+    <div class="done">
+        <h2>Well done!</h2>
+        <button class="reload win" (click)="restartGame()">Play again</button>
+      </div>
+      
+  <div class="mobileAdjustment">
+    <app-score></app-score>
+  
+    <div class="buttons">
+      <app-button *ngFor="let color of colors" [color]="color" (click)="getColor(color)"></app-button>
+    </div>
   </div>
 
+  <app-icon></app-icon>
+  
 </div>
-
-<h2>Created by <a href="https://www.linkedin.com/in/andelko-lipotic/">Anđelko Lipotić</a></h2>
