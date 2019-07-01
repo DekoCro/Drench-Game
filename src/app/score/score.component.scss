@@ -1,6 +1,9 @@
 h3 {
     font-size: 2em;
     margin: 0;
+    @media all and(max-width: 480px) {
+        color: white;
+    }
 }
 div {
     margin-bottom: .5em;
@@ -13,5 +16,8 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: .05em 0 0 .5em
+    margin: .05em 0 0 .5em;
+    @media all and(max-width: 480px) {
+        border: 1px solid white;
+    }
 }

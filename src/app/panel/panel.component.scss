@@ -12,12 +12,19 @@ app-icon {
     display: flex;
     flex-wrap: wrap;
     padding-left: 1em;
+    @media all and(max-width: 480px) {
+        display: none;
+    }
+    
 }
 .sideComponents {
     height: 378px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media all and(max-width: 480px) {
+        height: auto;
+    }
 }
 .loss, .done {
     display: none;
@@ -43,5 +50,6 @@ app-icon {
     justify-content: space-between;
     @media all and(max-width: 480px) {
         flex-direction: column-reverse;
+        height: auto;
     }
 }

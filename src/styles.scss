@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 body {
     height: 100vh;
-    background-image: url('assets/img/bg.jpg');
+    margin: 0;
+    background-image: url('assets/img/desktop_bg.jpg');
     background-position: center;
     background-size: cover;
     background-position-y: -5em;
@@ -10,6 +11,10 @@ body {
     align-items: center;
     font-family: "Slabo 27px", serif;
     @media all and(max-width: 480px) {
-        background: white;
+        background-color: black;
+        background-image: url('assets/img/mobile_bg.jpg');
+        background-position-y: auto;
+        background-repeat: no-repeat;
+        align-items: flex-start;
     }
 }

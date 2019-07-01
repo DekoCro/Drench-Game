@@ -10,4 +10,7 @@ div {
     &:hover {
         opacity: 0.75;
     }
+    @media all and(max-width: 480px) {
+        border: 1px solid white;
+    }
 }
